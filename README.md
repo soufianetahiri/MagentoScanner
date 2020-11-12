@@ -16,9 +16,11 @@ This is an early version under developpement, feel free to add your brick :) pul
       -H|--headers        List of headers (e.g. "Accept-Language: fr|ETag: 123")
       -c|--cookie         HTTP cookie header
 **Execution example**
-
+## Response Headers 
 ![Response Headers ](https://github.com/soufianetahiri/MagentoScanner/blob/main/1.png?raw=true)
+## SiteMap/Version/Patches/Admin Panel
 ![SiteMap/Version/Patches/Admin Panel ](https://github.com/soufianetahiri/MagentoScanner/blob/main/2.png?raw=true)
+## Content Discovery
 ![Content Discovery ](https://github.com/soufianetahiri/MagentoScanner/blob/main/3.png?raw=true)
 
 # Road map
