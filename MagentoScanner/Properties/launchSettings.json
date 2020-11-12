@@ -1,8 +1,7 @@
 {
   "profiles": {
     "MagentoScanner": {
-      "commandName": "Project",
-      "commandLineArgs": "-u https://www.1001pneus.fr --ignore--ssl --discover --mage-report"
+      "commandName": "Project"
     }
   }
 }
