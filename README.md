@@ -1,0 +1,2 @@
+# MagentoScanner
+Magento Security Scanner
