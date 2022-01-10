@@ -14,7 +14,7 @@ namespace MagentoScanner.Core
         private static int scanRetry = 0;
 
 
-        public static async Task TestMegaeportAsync(TargetOptions targetOptions, HttpClient client)
+        public static async Task TestMegaReportAsync(TargetOptions targetOptions, HttpClient client)
         {
             Logger.Log(Importance.Log, " Scanning Patches... ", ConsoleColor.White);
             await Scan(targetOptions, client);
@@ -72,7 +72,7 @@ namespace MagentoScanner.Core
 
             if (!SecPatchFound)
             {
-                Logger.Log(Importance.Critcal, "Security Patches could not be scanned. Retrying...", ConsoleColor.DarkRed);
+                Logger.Log(Importance.Critical, "Security Patches could not be scanned. Retrying...", ConsoleColor.DarkRed);
             }
 
             for (int i = 0; i < output.Count; i++)

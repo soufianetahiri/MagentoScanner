@@ -4,7 +4,7 @@
     {
         Info,
         Warning,
-        Critcal,
+        Critical,
         Log
     }
     public enum Criticity

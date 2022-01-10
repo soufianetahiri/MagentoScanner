@@ -45,7 +45,7 @@ namespace MagentoScanner.Async
                     await VersionIdentifier.TryToDetectVersion(targetOptions, client);
                     if (targetOptions.MageReport)
                     {
-                        await MageReport.TestMegaeportAsync(targetOptions, client);
+                        await MageReport.TestMegaReportAsync(targetOptions, client);
                     }
                  
                     if (targetOptions.DiscoverContent)
@@ -55,7 +55,7 @@ namespace MagentoScanner.Async
                 }
                 else
                 {
-                    Logger.Log(Importance.Critcal, string.Concat(targetOptions.Url) + " responded " + (await InitClientAsync(targetOptions)).StatusCode, ConsoleColor.Red);
+                    Logger.Log(Importance.Critical, string.Concat(targetOptions.Url) + " responded " + (await InitClientAsync(targetOptions)).StatusCode, ConsoleColor.Red);
                 }
                 Logger.Log(Importance.Log, " DONE, press any key to exit.", ConsoleColor.White);
                 Console.ReadKey();
@@ -63,7 +63,8 @@ namespace MagentoScanner.Async
             }
             catch (Exception ex)
             {
-                Logger.Log(Importance.Critcal, "Something went wrong: " + ex.Message, ConsoleColor.Red);
+                Logger.Log(Importance.Critical, "Something went wrong: " + ex.Message, ConsoleColor.Red);
+                Logger.Log(Importance.Critical, ex.Source + "\n" + ex.StackTrace, ConsoleColor.Red);
                 Console.ReadKey();
                 Environment.Exit(0);
             }
@@ -80,11 +81,11 @@ namespace MagentoScanner.Async
             {
                 if (ex.InnerException is System.Security.Authentication.AuthenticationException)
                 {
-                    Logger.Log(Importance.Critcal, "The remote certificate is invalid according to the validation procedure. Try turn on  --ignore-ssl flag", ConsoleColor.Red);
+                    Logger.Log(Importance.Critical, "The remote certificate is invalid according to the validation procedure. Try turn on  --ignore-ssl flag", ConsoleColor.Red);
                 }
                 else
                 {
-                    Logger.Log(Importance.Critcal, ex.InnerException.Message, ConsoleColor.Red);
+                    Logger.Log(Importance.Critical, ex.InnerException.Message, ConsoleColor.Red);
                 }
                 Console.ReadKey();
                 Environment.Exit(0);

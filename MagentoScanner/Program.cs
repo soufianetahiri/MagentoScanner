@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Security;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace MagentoScanner
@@ -15,10 +16,14 @@ namespace MagentoScanner
     {
         static async Task Main(string[] args)
         {
-            Console.SetWindowSize(
-       Math.Min(140, Console.LargestWindowWidth),
-       Math.Min(50, Console.LargestWindowHeight));
-            Console.Title = "MAgentoScanner v0.1";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Console.SetWindowSize(
+                    Math.Min(140, Console.LargestWindowWidth),
+                    Math.Min(50, Console.LargestWindowHeight));
+                Console.Title = "MagentoScanner v0.1";
+            }
+
             string banner = @"
 __   __  _______  _______  _______  __    _  _______  _______  _______  _______  _______  __    _  __    _  _______  ______   
 |  |_|  ||   _   ||       ||       ||  |  | ||       ||       ||       ||       ||   _   ||  |  | ||  |  | ||       ||    _ |  

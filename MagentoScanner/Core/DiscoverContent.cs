@@ -24,16 +24,23 @@ namespace MagentoScanner.Core
             Logger.Log(Importance.Log, " Starting content discovery (warming up) ", ConsoleColor.White);
 
             HttpResponseMessage[] results = await LoadContentAsync(targetOptions);
-
-            foreach (var result in results)
+            try
             {
-                if (result != null && (int)result.StatusCode != 404)
+                foreach (var result in results)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\t\t  " + "[" + (int)result.StatusCode + "] " +
-                       result.RequestMessage.RequestUri.ToString());
-                    Console.ResetColor();
+                    if (result != null && (int) result.StatusCode != 404)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\t\t  " + "[" + (int) result.StatusCode + "] " +
+                                          result.RequestMessage.RequestUri.ToString());
+                        Console.ResetColor();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Importance.Warning, "Error during content discovery", ConsoleColor.Red);
+                Logger.Log(Importance.Warning, ex.Message + ex.Source + ex.StackTrace, ConsoleColor.Red);
             }
         }
 
@@ -95,7 +102,7 @@ namespace MagentoScanner.Core
 
         private static async Task<HttpResponseMessage[]> LoadContentAsync(TargetOptions targetOptions)
         {
-            string content = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.CurrentProjectFolder(), "..\\Resources\\default_content.txt");
+            string content = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.CurrentProjectFolder(), "../Resources/default_content.txt");
             if (File.Exists(content))
             {
                 string[] paths = File.ReadAllLines(content);
